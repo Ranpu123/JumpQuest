@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp6d2bjoi57g6"]
+
+[ext_resource type="Script" path="res://Checkpoint.gd" id="1_5dd7l"]
+[ext_resource type="Texture2D" uid="uid://gjiq43f3lqwr" path="res://Assets/Objects/Flag (0).png" id="1_d1ws4"]
+[ext_resource type="Texture2D" uid="uid://bt3vgkdr262h" path="res://Assets/Objects/Flag (1).png" id="2_3h6jm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bi0fa"]
+size = Vector2(18, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dehe7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d1ws4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3h6jm")
+}],
+"loop": true,
+"name": &"active",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d1ws4")
+}],
+"loop": true,
+"name": &"indle",
+"speed": 3.0
+}]
+
+[node name="Checkpoint" type="Area2D"]
+script = ExtResource("1_5dd7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_bi0fa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dehe7")
+animation = &"indle"
+frame_progress = 0.213645
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

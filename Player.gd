@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal hit
 
 @onready var animation = $AnimatedSprite2D
+@onready var last_checkpoint = self.position
 
 const MAX_SPEED = 250.0
 const ACCELERATION = 15.0
@@ -68,6 +69,19 @@ func update_animation():
 		animation.play("idle")
 
 func _on_player_detector_body_entered(body):
+	player_die(body)
+
+#Ready to Respawn GAMER
+func _on_respawn_timer_timeout():
+	self.position = last_checkpoint
+	_rest_velocity()
+	show()
+	died = false
+
+func _rest_velocity():
+	velocity = Vector2.ZERO
+
+func player_die(body):
 	if body.is_in_group("enemy") or body.is_in_group("spikes"):
 		#TODO: Play the damage sound, respawn and change live number.
 		Global.lives -= 1
@@ -75,14 +89,9 @@ func _on_player_detector_body_entered(body):
 		
 		if Global.lives > 0:
 			$RespawnTimer.start()
+			
 			hide()
 			hit.emit()
 		else:
 			#TODO: GAMER has died for real, show screen of shame (Game over)
 			pass
-
-#Ready to Respawn GAMER
-func _on_respawn_timer_timeout():
-	#TODO: Respawn System integrated with Checkpoint object
-	show()
-	died = false

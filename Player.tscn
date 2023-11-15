@@ -40,7 +40,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dx5ab"]
 size = Vector2(24, 24)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_20qo5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
