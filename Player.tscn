@@ -4,11 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://di018nrdokgbo" path="res://Assets/Character/Grey (0).png" id="2_6i1k8"]
 [ext_resource type="Texture2D" uid="uid://c112d1xxhq113" path="res://Assets/Character/Grey (1).png" id="3_jm54t"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t0jj5"]
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp6lx"]
+size = Vector2(23, 23)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fy5dn"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6i1k8")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jm54t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_jm54t")
@@ -17,7 +33,7 @@ animations = [{
 "texture": ExtResource("2_6i1k8")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walking",
 "speed": 7.0
 }]
 
@@ -25,12 +41,13 @@ animations = [{
 script = ExtResource("1_20qo5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 scale = Vector2(2, 2)
-shape = SubResource("CapsuleShape2D_t0jj5")
+shape = SubResource("RectangleShape2D_fp6lx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fy5dn")
-animation = &"walk"
+animation = &"walking"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

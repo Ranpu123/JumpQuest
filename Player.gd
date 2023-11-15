@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal hit
 
+@onready var animation = $AnimatedSprite2D
+
 const MAX_SPEED = 250.0
 const ACCELERATION = 15.0
 const JUMP_VELOCITY = -350.0
@@ -20,10 +22,10 @@ func _physics_process(delta):
 	handle_double_jump()
 
 	handle_movement()
-
-	move_and_slide()
 	
 	update_animation()
+	
+	move_and_slide()
 
 func apply_gravity(delta):
 	if not is_on_floor():
@@ -43,17 +45,25 @@ func handle_jump():
 
 func handle_movement():
 	var direction = Input.get_axis("move_left", "move_right")
-	$AnimatedSprite2D.animation = "walk"
 	
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * MAX_SPEED, ACCELERATION) 
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
+
+func update_animation():
+	if velocity.x > 0:
+		animation.flip_h = true
+	elif velocity.x < 0:
+		animation.flip_h = false
 	
 	if velocity.length() > 0:
-		$AnimatedSprite2D.play()
+		if velocity.x != 0 and is_on_floor():
+			animation.play("walking")
+		elif velocity.y != 0:
+			animation.play("falling")
 	else:
-		$AnimatedSprite2D.stop()
+		animation.play("idle")
 
 #collision -> player death
 func _on_input_event(viewport, event, shape_idx):
