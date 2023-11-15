@@ -607,12 +607,12 @@ position = Vector2(1048, 379)
 scale = Vector2(2, 2)
 priority = -1
 
+[node name="Checkpoint2" parent="." instance=ExtResource("4_fujl3")]
+position = Vector2(1230, 165)
+scale = Vector2(2, 2)
+
 [node name="Mob" parent="." instance=ExtResource("3_hco1d")]
 position = Vector2(793, 446)
 
 [node name="Player" parent="." instance=ExtResource("2_k6ll2")]
 position = Vector2(231, 589)
-
-[node name="Checkpoint2" parent="." instance=ExtResource("4_fujl3")]
-position = Vector2(1230, 165)
-scale = Vector2(2, 2)

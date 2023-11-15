@@ -6,7 +6,7 @@ signal hit
 @onready var last_checkpoint = self.position
 
 const MAX_SPEED = 250.0
-const ACCELERATION = 15.0
+const ACCELERATION = 20.0
 const JUMP_VELOCITY = -350.0
 const FRICTION = 10.0
 
@@ -23,6 +23,8 @@ func _physics_process(delta):
 		handle_jump()
 		
 		handle_double_jump()
+		
+		handle_wall_jump()
 
 		handle_movement()
 		
@@ -35,16 +37,27 @@ func apply_gravity(delta):
 		velocity.y += gravity * delta
 
 func handle_double_jump():
-	if is_on_floor() and has_double_jumped:
+	if (is_on_floor() or is_on_wall()) and has_double_jumped:
 		has_double_jumped = false
 	
-	if Input.is_action_just_pressed("move_jump") and (not has_double_jumped and not is_on_floor()):
+	if Input.is_action_just_pressed("move_jump") and (not has_double_jumped and not (is_on_floor() or is_on_wall())):
 		has_double_jumped = true
 		velocity.y = JUMP_VELOCITY * 0.85
 		
 func handle_jump():
 	if Input.is_action_just_pressed("move_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
+func handle_wall_jump():
+	if Input.is_action_just_pressed("move_jump"):
+		
+		if Input.is_action_pressed("move_right") and is_on_wall_only():
+			velocity.y = JUMP_VELOCITY * 0.75
+			velocity.x = JUMP_VELOCITY * 0.50
+		if Input.is_action_pressed("move_left") and is_on_wall_only():
+			velocity.y = JUMP_VELOCITY * 0.75
+			velocity.x = -JUMP_VELOCITY * 0.50
+	
 
 func handle_movement():
 	var direction = Input.get_axis("move_left", "move_right")
