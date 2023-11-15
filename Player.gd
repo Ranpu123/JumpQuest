@@ -34,6 +34,7 @@ func handle_double_jump():
 		has_double_jumped = true
 		velocity.y = JUMP_VELOCITY * 0.85
 		
+		
 func handle_jump():
 	if Input.is_action_just_pressed("move_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
