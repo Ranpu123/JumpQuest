@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmg2r7xxap0fw"]
+[gd_scene load_steps=7 format=3 uid="uid://dmg2r7xxap0fw"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_20qo5"]
 [ext_resource type="Texture2D" uid="uid://di018nrdokgbo" path="res://Assets/Character/Grey (0).png" id="2_6i1k8"]
@@ -37,6 +37,9 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx5ab"]
+size = Vector2(24, 24)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_20qo5")
 
@@ -50,4 +53,16 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fy5dn")
 animation = &"walking"
 
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_dx5ab")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

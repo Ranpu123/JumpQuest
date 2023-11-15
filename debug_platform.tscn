@@ -43,7 +43,7 @@ polygon = PackedVector2Array(1, 602, 1301, 603, 1294, 769, -134, 762)
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_8t7or")]
 position = Vector2(540, 330)
 
-[node name="Mob" type="RigidBody2D" parent="."]
+[node name="Mob" type="RigidBody2D" parent="." groups=["enemy"]]
 position = Vector2(247, 267)
 script = ExtResource("2_3oejl")
 metadata/_edit_group_ = true

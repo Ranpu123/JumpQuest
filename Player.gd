@@ -10,19 +10,21 @@ const JUMP_VELOCITY = -350.0
 const FRICTION = 10.0
 
 var has_double_jumped = false
+var died = false
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _physics_process(delta):
 	apply_gravity(delta)
-
-	handle_jump()
 	
-	handle_double_jump()
+	if !died:
+		handle_jump()
+		
+		handle_double_jump()
 
-	handle_movement()
-	
+		handle_movement()
+		
 	update_animation()
 	
 	move_and_slide()
@@ -65,9 +67,22 @@ func update_animation():
 	else:
 		animation.play("idle")
 
-#collision -> player death
-func _on_input_event(viewport, event, shape_idx):
-	hide() # Player disappears after being hit.
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
+func _on_player_detector_body_entered(body):
+	if body.is_in_group("enemy") or body.is_in_group("spikes"):
+		#TODO: Play the damage sound, respawn and change live number.
+		Global.lives -= 1
+		died = true
+		
+		if Global.lives > 0:
+			$RespawnTimer.start()
+			hide()
+			hit.emit()
+		else:
+			#TODO: GAMER has died for real, show screen of shame (Game over)
+			pass
+
+#Ready to Respawn GAMER
+func _on_respawn_timer_timeout():
+	#TODO: Respawn System integrated with Checkpoint object
+	show()
+	died = false
