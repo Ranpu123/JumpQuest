@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal hit
 
 const MAX_SPEED = 500.0
 const ACCELERATION = 50.0
@@ -41,8 +42,21 @@ func handle_jump():
 
 func handle_movement():
 	var direction = Input.get_axis("move_left", "move_right")
+	$AnimatedSprite2D.animation = "walk"
 	
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * MAX_SPEED, ACCELERATION) 
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
+	
+	if velocity.length() > 0:
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.stop()
+
+#collision -> player death
+func _on_input_event(viewport, event, shape_idx):
+	hide() # Player disappears after being hit.
+	hit.emit()
+	# Must be deferred as we can't change physics properties on a physics callback.
+	$CollisionShape2D.set_deferred("disabled", true)

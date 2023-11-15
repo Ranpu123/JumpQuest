@@ -1,9 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4uomyne6nlwl"]
+[gd_scene load_steps=9 format=3 uid="uid://b4uomyne6nlwl"]
 
 [ext_resource type="PackedScene" uid="uid://dmg2r7xxap0fw" path="res://Player.tscn" id="1_8t7or"]
+[ext_resource type="Script" path="res://Mob.gd" id="2_3oejl"]
+[ext_resource type="Texture2D" uid="uid://djiya2u0ehjpv" path="res://Assets/Mob/Walking (0).png" id="2_f143p"]
+[ext_resource type="Texture2D" uid="uid://ugv7p0smipyh" path="res://Assets/Mob/Walking (1).png" id="3_ju4tt"]
+[ext_resource type="Texture2D" uid="uid://c12jnwb0yco1" path="res://Assets/Mob/Walking (2).png" id="4_akcb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8woj7"]
 size = Vector2(1287, 88)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2u34u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f143p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ju4tt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_akcb8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8q7ec"]
+size = Vector2(41, 34)
 
 [node name="Debug Platform" type="Node2D"]
 
@@ -17,4 +41,18 @@ shape = SubResource("RectangleShape2D_8woj7")
 polygon = PackedVector2Array(1, 602, 1301, 603, 1294, 769, -134, 762)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_8t7or")]
-position = Vector2(513, 305)
+position = Vector2(540, 330)
+
+[node name="Mob" type="RigidBody2D" parent="."]
+position = Vector2(247, 267)
+script = ExtResource("2_3oejl")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mob"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2u34u")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob"]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_8q7ec")
