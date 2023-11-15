@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
+@onready var animation = $AnimationPlayer
 
-const MAX_SPEED = 500.0
-const ACCELERATION = 50.0
-const JUMP_VELOCITY = -550.0
-const FRICTION = 15.0
+const MAX_SPEED = 250.0
+const ACCELERATION = 15.0
+const JUMP_VELOCITY = -350.0
+const FRICTION = 10.0
 
 var has_double_jumped = false
 
@@ -21,6 +22,8 @@ func _physics_process(delta):
 	handle_movement()
 
 	move_and_slide()
+	
+	update_animation()
 
 func apply_gravity(delta):
 	if not is_on_floor():
@@ -34,7 +37,6 @@ func handle_double_jump():
 		has_double_jumped = true
 		velocity.y = JUMP_VELOCITY * 0.85
 		
-		
 func handle_jump():
 	if Input.is_action_just_pressed("move_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -46,3 +48,13 @@ func handle_movement():
 		velocity.x = move_toward(velocity.x, direction * MAX_SPEED, ACCELERATION) 
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
+
+func update_animation():
+	if velocity.x == 0 or not is_on_floor():
+		animation.stop()
+	else:
+		var dir = "Left"
+		if velocity.x < 0: dir = "Left"
+		elif velocity.x > 0: dir = "Right"
+		
+		animation.play("walk"+dir)
