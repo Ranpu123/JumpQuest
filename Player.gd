@@ -41,20 +41,24 @@ func handle_double_jump():
 		has_double_jumped = false
 	
 	if Input.is_action_just_pressed("move_jump") and (not has_double_jumped and not (is_on_floor() or is_on_wall())):
+		$JumpSound.play()
 		has_double_jumped = true
 		velocity.y = JUMP_VELOCITY * 0.85
 		
 func handle_jump():
 	if Input.is_action_just_pressed("move_jump") and is_on_floor():
+		$JumpSound.play()
 		velocity.y = JUMP_VELOCITY
 		
 func handle_wall_jump():
 	if Input.is_action_just_pressed("move_jump"):
 		
 		if Input.is_action_pressed("move_right") and is_on_wall_only():
+			$JumpSound.play()
 			velocity.y = JUMP_VELOCITY * 0.75
 			velocity.x = JUMP_VELOCITY * 0.50
 		if Input.is_action_pressed("move_left") and is_on_wall_only():
+			$JumpSound.play()
 			velocity.y = JUMP_VELOCITY * 0.75
 			velocity.x = -JUMP_VELOCITY * 0.50
 	
@@ -97,8 +101,11 @@ func _rest_velocity():
 func player_die(body):
 	if body.is_in_group("enemy") or body.is_in_group("spikes"):
 		#TODO: Play the damage sound, respawn and change live number.
+		$DeathSound.play()
+		
 		Global.lives -= 1
 		died = true
+		#position = Vector2(9999,9999)
 		
 		if Global.lives > 0:
 			$RespawnTimer.start()

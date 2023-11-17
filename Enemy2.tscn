@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cq7noseo3icbg"]
+
+[ext_resource type="Script" path="res://Enemy2.gd" id="1_gnnbb"]
+[ext_resource type="Texture2D" uid="uid://boo71lgk3i7m1" path="res://Assets/Mob/Block (1).png" id="1_mdkin"]
+[ext_resource type="Texture2D" uid="uid://5h0doudti4jn" path="res://Assets/Mob/Block (0).png" id="2_xgm2t"]
+[ext_resource type="Script" path="res://finite_state_machine.gd" id="3_7ba5a"]
+[ext_resource type="Script" path="res://Enemy2/Flutuar.gd" id="5_2dyi6"]
+[ext_resource type="Script" path="res://Enemy2/Cair.gd" id="6_kqhqe"]
+[ext_resource type="Script" path="res://Enemy2/Aterrissar.gd" id="7_5r78v"]
+[ext_resource type="Script" path="res://Enemy2/Subir.gd" id="8_x36fo"]
+[ext_resource type="AudioStream" uid="uid://beubd7c7y44b1" path="res://Assets/Sounds/Down.mp3" id="9_3d0aq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_651k8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mdkin")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xgm2t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wks6u"]
+size = Vector2(18, 18)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_gnnbb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_651k8")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wks6u")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 200)
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("3_7ba5a")
+state = NodePath("FlutuarEnemy")
+
+[node name="FlutuarEnemy" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("down_cast", "animator", "actor")]
+script = ExtResource("5_2dyi6")
+down_cast = NodePath("../../RayCast2D")
+animator = NodePath("../../AnimatedSprite2D")
+actor = NodePath("../..")
+
+[node name="CairEnemy" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("down_cast", "animator", "actor", "down_sound")]
+script = ExtResource("6_kqhqe")
+down_cast = NodePath("../../RayCast2D")
+animator = NodePath("../../AnimatedSprite2D")
+actor = NodePath("../..")
+down_sound = NodePath("../../AudioStreamPlayer2D")
+
+[node name="AterrissarEnemy" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animator", "lander_Timer")]
+script = ExtResource("7_5r78v")
+animator = NodePath("../../AnimatedSprite2D")
+lander_Timer = NodePath("../../Timer")
+
+[node name="SubirEnemy" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animator", "actor")]
+script = ExtResource("8_x36fo")
+animator = NodePath("../../AnimatedSprite2D")
+actor = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_3d0aq")
+pitch_scale = 0.6
+
+[connection signal="timeout" from="Timer" to="FiniteStateMachine/AterrissarEnemy" method="_on_timer_timeout"]

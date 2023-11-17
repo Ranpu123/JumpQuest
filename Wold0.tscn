@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c612n7nnfccnt"]
+[gd_scene load_steps=8 format=3 uid="uid://c612n7nnfccnt"]
 
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
 [ext_resource type="PackedScene" uid="uid://dmg2r7xxap0fw" path="res://Player.tscn" id="2_k6ll2"]
 [ext_resource type="PackedScene" uid="uid://ba4nelkrgqugj" path="res://Mob.tscn" id="3_hco1d"]
 [ext_resource type="PackedScene" uid="uid://dp6d2bjoi57g6" path="res://Checkpoint.tscn" id="4_fujl3"]
+[ext_resource type="PackedScene" uid="uid://cq7noseo3icbg" path="res://Enemy2.tscn" id="5_17fy7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lrt2"]
 texture = ExtResource("1_nkli1")
@@ -12,18 +13,22 @@ texture_region_size = Vector2i(18, 18)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+0:0/0/physics_layer_0/polygon_0/one_way = true
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+1:0/0/physics_layer_0/polygon_0/one_way = true
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+2:0/0/physics_layer_0/polygon_0/one_way = true
 3:0/0 = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+3:0/0/physics_layer_0/polygon_0/one_way = true
 4:0/0 = 0
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
@@ -134,18 +139,22 @@ texture_region_size = Vector2i(18, 18)
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+0:2/0/physics_layer_0/polygon_0/one_way = true
 1:2/0 = 0
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+1:2/0/physics_layer_0/polygon_0/one_way = true
 2:2/0 = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+2:2/0/physics_layer_0/polygon_0/one_way = true
 3:2/0 = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+3:2/0/physics_layer_0/polygon_0/one_way = true
 4:2/0 = 0
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0
@@ -256,18 +265,22 @@ texture_region_size = Vector2i(18, 18)
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+0:4/0/physics_layer_0/polygon_0/one_way = true
 1:4/0 = 0
 1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:4/0/physics_layer_0/angular_velocity = 0.0
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+1:4/0/physics_layer_0/polygon_0/one_way = true
 2:4/0 = 0
 2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:4/0/physics_layer_0/angular_velocity = 0.0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+2:4/0/physics_layer_0/polygon_0/one_way = true
 3:4/0 = 0
 3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:4/0/physics_layer_0/angular_velocity = 0.0
 3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+3:4/0/physics_layer_0/polygon_0/one_way = true
 4:4/0 = 0
 4:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:4/0/physics_layer_0/angular_velocity = 0.0
@@ -616,3 +629,7 @@ position = Vector2(793, 446)
 
 [node name="Player" parent="." instance=ExtResource("2_k6ll2")]
 position = Vector2(231, 589)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_17fy7")]
+position = Vector2(603, 401)
+scale = Vector2(2, 2)

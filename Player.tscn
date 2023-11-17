@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmg2r7xxap0fw"]
+[gd_scene load_steps=9 format=3 uid="uid://dmg2r7xxap0fw"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_20qo5"]
 [ext_resource type="Texture2D" uid="uid://di018nrdokgbo" path="res://Assets/Character/Grey (0).png" id="2_6i1k8"]
 [ext_resource type="Texture2D" uid="uid://c112d1xxhq113" path="res://Assets/Character/Grey (1).png" id="3_jm54t"]
+[ext_resource type="AudioStream" uid="uid://b0c4ll3f1eoq4" path="res://Assets/Sounds/Death.wav" id="4_xam1r"]
+[ext_resource type="AudioStream" uid="uid://d0ckm6k0g50wf" path="res://Assets/Sounds/Jump.mp3" id="5_pyd2t"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp6lx"]
-size = Vector2(23, 23)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o30vs"]
+height = 23.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fy5dn"]
 animations = [{
@@ -46,7 +48,7 @@ script = ExtResource("1_20qo5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_fp6lx")
+shape = SubResource("CapsuleShape2D_o30vs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -61,7 +63,14 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_dx5ab")
 
 [node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 2.5
 one_shot = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xam1r")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_pyd2t")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
