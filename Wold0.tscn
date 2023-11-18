@@ -649,4 +649,4 @@ position = Vector2(446, 422)
 scale = Vector2(2, 2)
 
 [node name="Mob2" parent="." instance=ExtResource("3_hco1d")]
-position = Vector2(1048, 120)
+position = Vector2(793, 21)
