@@ -103,6 +103,7 @@ func player_die(body):
 	if body.is_in_group("enemy") or body.is_in_group("spikes"):
 		$DeathSound.play()
 		velocity = Vector2.ZERO
+		position = Vector2(999,999)
 		Global.lives -= 1
 		died = true
 		$CollisionShape2D.disabled = true

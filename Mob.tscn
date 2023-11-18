@@ -1,16 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba4nelkrgqugj"]
+[gd_scene load_steps=9 format=3 uid="uid://ba4nelkrgqugj"]
 
 [ext_resource type="Script" path="res://Mob.gd" id="1_t4v2h"]
-[ext_resource type="Texture2D" uid="uid://djiya2u0ehjpv" path="res://Assets/Mob/Walking (0).png" id="2_nqisa"]
+[ext_resource type="Script" path="res://finite_state_machine.gd" id="3_ds0lm"]
 [ext_resource type="Texture2D" uid="uid://ugv7p0smipyh" path="res://Assets/Mob/Walking (1).png" id="3_e0x7t"]
+[ext_resource type="Script" path="res://Enemy/Andar.gd" id="4_6bc8v"]
 [ext_resource type="Texture2D" uid="uid://c12jnwb0yco1" path="res://Assets/Mob/Walking (2).png" id="4_cvvys"]
+[ext_resource type="Script" path="res://Enemy/Virar.gd" id="6_5nav1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2u34u"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_nqisa")
-}, {
 "duration": 1.0,
 "texture": ExtResource("3_e0x7t")
 }, {
@@ -23,18 +22,38 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8q7ec"]
-size = Vector2(41, 34)
+size = Vector2(48, 42)
 
-[node name="Mob" type="RigidBody2D" groups=["enemy"]]
-position = Vector2(247, 267)
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+floor_constant_speed = true
 script = ExtResource("1_t4v2h")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_2u34u")
 animation = &"walk"
+frame_progress = 0.232509
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 4)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_8q7ec")
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("3_ds0lm")
+state = NodePath("AndarEnemy")
+
+[node name="AndarEnemy" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("down_cast", "animator", "actor")]
+script = ExtResource("4_6bc8v")
+down_cast = NodePath("../../RayCast2D")
+animator = NodePath("../../AnimatedSprite2D")
+actor = NodePath("../..")
+
+[node name="VirarEnemy" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animator", "actor", "down_cast")]
+script = ExtResource("6_5nav1")
+animator = NodePath("../../AnimatedSprite2D")
+actor = NodePath("../..")
+down_cast = NodePath("../../RayCast2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(22, 0)
