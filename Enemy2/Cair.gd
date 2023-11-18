@@ -18,6 +18,7 @@ func _enter_state() -> void:
 func _exit_state() -> void:
 	set_physics_process(false)
 	down_sound.play()
+	get_tree().call_group("camera", "_on_collision")
 
 func _physics_process(delta):
 	print("SPEED ", actor.velocity)

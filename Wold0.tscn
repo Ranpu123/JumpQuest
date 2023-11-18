@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c612n7nnfccnt"]
+[gd_scene load_steps=10 format=3 uid="uid://c612n7nnfccnt"]
 
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
 [ext_resource type="PackedScene" uid="uid://dmg2r7xxap0fw" path="res://Player.tscn" id="2_k6ll2"]
 [ext_resource type="PackedScene" uid="uid://ba4nelkrgqugj" path="res://Mob.tscn" id="3_hco1d"]
 [ext_resource type="PackedScene" uid="uid://dp6d2bjoi57g6" path="res://Checkpoint.tscn" id="4_fujl3"]
 [ext_resource type="PackedScene" uid="uid://cq7noseo3icbg" path="res://Enemy2.tscn" id="5_17fy7"]
+[ext_resource type="PackedScene" uid="uid://b4uomyne6nlwl" path="res://debug_platform.tscn" id="6_o4xo5"]
+[ext_resource type="Script" path="res://Camera.gd" id="7_4h55h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lrt2"]
 texture = ExtResource("1_nkli1")
@@ -616,12 +618,12 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="Checkpoint" parent="." instance=ExtResource("4_fujl3")]
-position = Vector2(1048, 379)
+position = Vector2(1048, 382)
 scale = Vector2(2, 2)
 priority = -1
 
 [node name="Checkpoint2" parent="." instance=ExtResource("4_fujl3")]
-position = Vector2(1230, 165)
+position = Vector2(1230, 166)
 scale = Vector2(2, 2)
 
 [node name="Mob" parent="." instance=ExtResource("3_hco1d")]
@@ -631,5 +633,17 @@ position = Vector2(793, 446)
 position = Vector2(231, 589)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_17fy7")]
-position = Vector2(603, 401)
+position = Vector2(504, 422)
+scale = Vector2(2, 2)
+
+[node name="Debug Platform" parent="." groups=["spikes"] instance=ExtResource("6_o4xo5")]
+position = Vector2(-713, 446)
+scale = Vector2(2.32, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+anchor_mode = 0
+script = ExtResource("7_4h55h")
+
+[node name="Enemy3" parent="." instance=ExtResource("5_17fy7")]
+position = Vector2(446, 422)
 scale = Vector2(2, 2)

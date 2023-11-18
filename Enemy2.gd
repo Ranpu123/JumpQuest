@@ -5,7 +5,7 @@ extends CharacterBody2D
 const DOWN_MAX_SPEED = 30.0
 const UP_MAX_SPEED = -1.0
 const UP_SPEED = -1.0
-const DOWN_ACCELERATION = 10.0
+const DOWN_ACCELERATION = 30.0
 
 @onready var startPosition = position
 
@@ -14,7 +14,6 @@ const DOWN_ACCELERATION = 10.0
 @onready var cair = $FiniteStateMachine/CairEnemy
 @onready var aterrissar = $FiniteStateMachine/AterrissarEnemy
 @onready var subir = $FiniteStateMachine/SubirEnemy
-
 
 func _ready():
 	flutuar.player_under.connect(fsm.change_state.bind(cair))

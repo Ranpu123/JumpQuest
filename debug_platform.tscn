@@ -1,32 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4uomyne6nlwl"]
-
-[ext_resource type="PackedScene" uid="uid://dmg2r7xxap0fw" path="res://Player.tscn" id="1_8t7or"]
-[ext_resource type="PackedScene" uid="uid://ba4nelkrgqugj" path="res://Mob.tscn" id="2_0s1k8"]
-[ext_resource type="PackedScene" uid="uid://dp6d2bjoi57g6" path="res://Checkpoint.tscn" id="6_jls85"]
+[gd_scene load_steps=2 format=3 uid="uid://b4uomyne6nlwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8woj7"]
 size = Vector2(1287, 88)
 
 [node name="Debug Platform" type="Node2D"]
 
-[node name="Ground" type="StaticBody2D" parent="."]
+[node name="Ground" type="StaticBody2D" parent="." groups=["spike"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(644, 645)
 shape = SubResource("RectangleShape2D_8woj7")
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground"]
-polygon = PackedVector2Array(1, 602, 1301, 603, 1294, 769, -134, 762)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_8t7or")]
-position = Vector2(540, 306)
-
-[node name="Mob" parent="." instance=ExtResource("2_0s1k8")]
-
-[node name="Checkpoint" parent="." instance=ExtResource("6_jls85")]
-position = Vector2(746, 584)
-scale = Vector2(2, 2)
-
-[node name="Checkpoint2" parent="." instance=ExtResource("6_jls85")]
-position = Vector2(67, 582)
-scale = Vector2(2, 2)
+polygon = PackedVector2Array(-159, 601, 1475, 589, 1498, 747, -134, 762)

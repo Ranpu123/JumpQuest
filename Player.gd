@@ -91,6 +91,7 @@ func _on_player_detector_body_entered(body):
 #Ready to Respawn GAMER
 func _on_respawn_timer_timeout():
 	self.position = last_checkpoint
+	$CollisionShape2D.disabled = false
 	_rest_velocity()
 	show()
 	died = false
@@ -100,12 +101,11 @@ func _rest_velocity():
 
 func player_die(body):
 	if body.is_in_group("enemy") or body.is_in_group("spikes"):
-		#TODO: Play the damage sound, respawn and change live number.
 		$DeathSound.play()
-		
+		velocity = Vector2.ZERO
 		Global.lives -= 1
 		died = true
-		#position = Vector2(9999,9999)
+		$CollisionShape2D.disabled = true
 		
 		if Global.lives > 0:
 			$RespawnTimer.start()
