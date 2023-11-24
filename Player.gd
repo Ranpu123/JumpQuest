@@ -4,6 +4,7 @@ signal hit
 
 @onready var animation = $AnimatedSprite2D
 @onready var last_checkpoint = self.position
+@onready var last_prioridade = 0
 
 const MAX_SPEED = 250.0
 const ACCELERATION = 20.0
