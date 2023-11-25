@@ -20,8 +20,6 @@ func _physics_process(delta):
 	if actor.position.y < actor.startPosition.y:
 		actor.velocity = Vector2.ZERO
 		back_in_place.emit()
-	print("GOING UP")
-	print("SPEED ", actor.velocity)
 
 	actor.velocity.y += actor.UP_SPEED * delta
 	actor.velocity.y = clamp(actor.velocity.y, 0, actor.UP_MAX_SPEED)

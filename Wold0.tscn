@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c612n7nnfccnt"]
+[gd_scene load_steps=15 format=3 uid="uid://c612n7nnfccnt"]
 
+[ext_resource type="Script" path="res://Wold0.gd" id="1_njs4m"]
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
 [ext_resource type="PackedScene" uid="uid://dmg2r7xxap0fw" path="res://Player.tscn" id="2_k6ll2"]
 [ext_resource type="PackedScene" uid="uid://ba4nelkrgqugj" path="res://Mob.tscn" id="3_hco1d"]
@@ -8,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://b4uomyne6nlwl" path="res://debug_platform.tscn" id="6_o4xo5"]
 [ext_resource type="Script" path="res://Camera.gd" id="7_4h55h"]
 [ext_resource type="PackedScene" uid="uid://cjj6loh6adn8n" path="res://Spike.tscn" id="8_oyfls"]
+[ext_resource type="PackedScene" uid="uid://co0mn7xgf70bk" path="res://Coin.tscn" id="9_m7vcc"]
+[ext_resource type="AudioStream" uid="uid://dghjurocyari5" path="res://Assets/Sounds/Coin.mp3" id="11_xbnbt"]
+[ext_resource type="PackedScene" uid="uid://c6bltyij8sj70" path="res://Porta.tscn" id="12_en4uj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lrt2"]
 texture = ExtResource("1_nkli1")
@@ -602,7 +606,8 @@ tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
 sources/51 = SubResource("TileSetAtlasSource_7lrt2")
 
-[node name="World0" type="Node2D"]
+[node name="World0" type="Node2D" groups=["coinListener"]]
+script = ExtResource("1_njs4m")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)
@@ -617,6 +622,10 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
+
+[node name="Porta" parent="." instance=ExtResource("12_en4uj")]
+position = Vector2(396, 127)
+scale = Vector2(2, 2)
 
 [node name="Checkpoint" parent="." instance=ExtResource("4_fujl3")]
 position = Vector2(1048, 382)
@@ -657,3 +666,15 @@ position = Vector2(793, 21)
 [node name="Sprite2D" parent="." instance=ExtResource("8_oyfls")]
 position = Vector2(324, 595)
 scale = Vector2(2, 2)
+
+[node name="Coin" parent="." instance=ExtResource("9_m7vcc")]
+position = Vector2(589, 531)
+scale = Vector2(2, 2)
+
+[node name="Coin2" parent="." instance=ExtResource("9_m7vcc")]
+position = Vector2(644, 493)
+scale = Vector2(2, 2)
+
+[node name="CoinUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_xbnbt")
+volume_db = -10.421

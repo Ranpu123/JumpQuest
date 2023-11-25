@@ -21,7 +21,6 @@ func _exit_state() -> void:
 	get_tree().call_group("camera", "_on_collision")
 
 func _physics_process(delta):
-	print("SPEED ", actor.velocity)
 	actor.velocity.y += actor.DOWN_ACCELERATION * delta
 	actor.velocity.y = clamp(actor.velocity.y, 0,actor.DOWN_MAX_SPEED)
 	var col = actor.move_and_collide(actor.velocity)

@@ -12,7 +12,6 @@ func _ready():
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("falling")
-	print("ENTERED LANDING")
 	lander_Timer.start()
 
 func _exit_state() -> void:
