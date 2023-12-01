@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6bltyij8sj70"]
+[gd_scene load_steps=5 format=3 uid="uid://c6bltyij8sj70"]
 
 [ext_resource type="Script" path="res://Porta.gd" id="1_mrvyr"]
 [ext_resource type="Texture2D" uid="uid://do5pam57h34aw" path="res://Assets/Objects/Door (1).png" id="2_sqxkn"]
+[ext_resource type="Texture2D" uid="uid://clccu86bkeua2" path="res://Assets/Coin/Coin.png" id="3_msepe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bw3ic"]
 size = Vector2(18, 18)
@@ -14,3 +15,35 @@ texture = ExtResource("2_sqxkn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bw3ic")
+
+[node name="barra" type="Label" parent="."]
+offset_left = -3.0
+offset_top = -29.0
+offset_right = 4.0
+offset_bottom = -3.0
+text = "/"
+
+[node name="atual" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -29.0
+offset_right = -4.0
+offset_bottom = -3.0
+text = "#"
+horizontal_alignment = 2
+
+[node name="max" type="Label" parent="."]
+offset_left = 4.0
+offset_top = -29.0
+offset_right = 37.0
+offset_bottom = -3.0
+text = "#"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -9.0
+offset_top = -40.0
+offset_right = 9.0
+offset_bottom = -22.0
+texture = ExtResource("3_msepe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -6,9 +6,9 @@ signal hit
 @onready var last_checkpoint = self.position
 @onready var last_prioridade = 0
 
-const MAX_SPEED = 250.0
+var MAX_SPEED = 250.0
 const ACCELERATION = 20.0
-const JUMP_VELOCITY = -350.0
+var JUMP_VELOCITY = -350.0
 const FRICTION = 10.0
 
 var has_double_jumped = false
@@ -88,6 +88,12 @@ func update_animation():
 
 func _on_player_detector_body_entered(body):
 	player_die(body)
+	if body.is_in_group("power_up"):
+		MAX_SPEED = MAX_SPEED * 1.15
+		JUMP_VELOCITY = JUMP_VELOCITY * 1.15
+		body.queue_free()
+		$PowerUpTimer.start()
+		print("Caralha")
 
 #Ready to Respawn GAMER
 func _on_respawn_timer_timeout():
@@ -117,3 +123,8 @@ func player_die(body):
 		else:
 			#TODO: GAMER has died for real, show screen of shame (Game over)
 			pass
+
+
+func _on_power_up_timer_timeout():
+	MAX_SPEED = MAX_SPEED / 1.15
+	JUMP_VELOCITY = JUMP_VELOCITY / 1.15 # Replace with function body.

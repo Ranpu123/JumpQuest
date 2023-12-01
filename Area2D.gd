@@ -8,3 +8,4 @@ func _on_body_entered(body):
 		get_tree().call_group("coinListener", "_on_coin_up")
 		self.queue_free()
 		
+ 

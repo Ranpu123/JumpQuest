@@ -73,6 +73,10 @@ stream = ExtResource("4_xam1r")
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_pyd2t")
 
+[node name="PowerUpTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_power_up_timer_timeout"]

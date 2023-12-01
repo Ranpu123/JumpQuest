@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var porta: Porta
+@export var max_coin = 5
 
 var coins = 0
 
@@ -17,4 +17,3 @@ func _process(delta):
 func _on_coin_up():
 	coins += 1
 	$CoinUp.play()
-	porta.atualizaHUD(coins)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c612n7nnfccnt"]
+[gd_scene load_steps=29 format=3 uid="uid://bno3ti4o4fk14"]
 
 [ext_resource type="Script" path="res://Wold0.gd" id="1_njs4m"]
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cq7noseo3icbg" path="res://Enemy2.tscn" id="5_17fy7"]
 [ext_resource type="PackedScene" uid="uid://b4uomyne6nlwl" path="res://debug_platform.tscn" id="6_o4xo5"]
 [ext_resource type="Script" path="res://Camera.gd" id="7_4h55h"]
+[ext_resource type="PackedScene" uid="uid://ch7ebfl37syt6" path="res://power_up.tscn" id="8_8ccvo"]
 [ext_resource type="PackedScene" uid="uid://cjj6loh6adn8n" path="res://Spike.tscn" id="8_oyfls"]
 [ext_resource type="PackedScene" uid="uid://co0mn7xgf70bk" path="res://Coin.tscn" id="9_m7vcc"]
 [ext_resource type="AudioStream" uid="uid://dghjurocyari5" path="res://Assets/Sounds/Coin.mp3" id="11_xbnbt"]
@@ -633,6 +634,9 @@ font_size = 22
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ttl7v"]
+font_size = 20
+
 [sub_resource type="GDScript" id="GDScript_wmpqb"]
 script/source = "extends Node2D
 
@@ -647,11 +651,9 @@ func _process(delta):
 	pass
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_ttl7v"]
-font_size = 20
-
-[node name="World0" type="Node2D" groups=["coinListener"]]
+[node name="World0" type="Node2D" node_paths=PackedStringArray("porta") groups=["coinListener"]]
 script = ExtResource("1_njs4m")
+porta = NodePath("Porta")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)
@@ -667,9 +669,28 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+anchor_mode = 0
+script = ExtResource("7_4h55h")
+
+[node name="Player" parent="." instance=ExtResource("2_k6ll2")]
+position = Vector2(231, 589)
+
+[node name="Coin" parent="." instance=ExtResource("9_m7vcc")]
+position = Vector2(589, 531)
+scale = Vector2(2, 2)
+
+[node name="Coin2" parent="." instance=ExtResource("9_m7vcc")]
+position = Vector2(644, 493)
+scale = Vector2(2, 2)
+
 [node name="Porta" parent="." instance=ExtResource("12_en4uj")]
 position = Vector2(396, 127)
 scale = Vector2(2, 2)
+max_coin = 2
+
+[node name="PowerUp" parent="." instance=ExtResource("8_8ccvo")]
+position = Vector2(188, 553)
 
 [node name="Checkpoint" parent="." instance=ExtResource("4_fujl3")]
 position = Vector2(1048, 382)
@@ -682,42 +703,27 @@ position = Vector2(1230, 166)
 scale = Vector2(2, 2)
 prioridade = 2
 
+[node name="Spike" parent="." instance=ExtResource("8_oyfls")]
+position = Vector2(324, 595)
+scale = Vector2(2, 2)
+
 [node name="Mob" parent="." instance=ExtResource("3_hco1d")]
 position = Vector2(793, 446)
 
-[node name="Player" parent="." instance=ExtResource("2_k6ll2")]
-position = Vector2(231, 589)
+[node name="Mob2" parent="." instance=ExtResource("3_hco1d")]
+position = Vector2(793, 21)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_17fy7")]
 position = Vector2(504, 422)
 scale = Vector2(2, 2)
 
-[node name="Debug Platform" parent="." groups=["spikes"] instance=ExtResource("6_o4xo5")]
-position = Vector2(-713, 446)
-scale = Vector2(2.32, 1)
-
-[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
-anchor_mode = 0
-script = ExtResource("7_4h55h")
-
 [node name="Enemy3" parent="." instance=ExtResource("5_17fy7")]
 position = Vector2(446, 422)
 scale = Vector2(2, 2)
 
-[node name="Mob2" parent="." instance=ExtResource("3_hco1d")]
-position = Vector2(793, 21)
-
-[node name="Sprite2D" parent="." instance=ExtResource("8_oyfls")]
-position = Vector2(324, 595)
-scale = Vector2(2, 2)
-
-[node name="Coin" parent="." instance=ExtResource("9_m7vcc")]
-position = Vector2(589, 531)
-scale = Vector2(2, 2)
-
-[node name="Coin2" parent="." instance=ExtResource("9_m7vcc")]
-position = Vector2(644, 493)
-scale = Vector2(2, 2)
+[node name="Debug Platform" parent="." groups=["spikes"] instance=ExtResource("6_o4xo5")]
+position = Vector2(-713, 446)
+scale = Vector2(2.32, 1)
 
 [node name="CoinUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_xbnbt")
@@ -790,6 +796,14 @@ pulo na
 parede"
 label_settings = SubResource("LabelSettings_t5hdc")
 
+[node name="Slash" type="Label" parent="."]
+offset_left = 250.0
+offset_top = 321.0
+offset_right = 290.0
+offset_bottom = 352.0
+text = "/"
+label_settings = SubResource("LabelSettings_ttl7v")
+
 [node name="Upbutton" parent="." instance=ExtResource("13_qoa0x")]
 position = Vector2(276, 336)
 scale = Vector2(2, 2)
@@ -814,11 +828,3 @@ scale = Vector2(2, 2)
 [node name="Upbutton3" parent="." instance=ExtResource("13_qoa0x")]
 position = Vector2(241, 371)
 scale = Vector2(2, 2)
-
-[node name="Slash" type="Label" parent="."]
-offset_left = 250.0
-offset_top = 321.0
-offset_right = 290.0
-offset_bottom = 352.0
-text = "/"
-label_settings = SubResource("LabelSettings_ttl7v")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch7ebfl37syt6"]
+
+[ext_resource type="Texture2D" uid="uid://dabmtudesu1aw" path="res://Assets/Power Up/Diamont.png" id="1_kuxwb"]
+[ext_resource type="Script" path="res://power_up.gd" id="1_pu2fk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhur0"]
+size = Vector2(20, 17)
+
+[node name="PowerUp" type="Area2D" groups=["power_up"]]
+script = ExtResource("1_pu2fk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_kuxwb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["power_up"]]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mhur0")

@@ -1,8 +1,6 @@
-extends Node2D
+extends Control
 
-@export var porta: Porta
 
-var coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,9 +10,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
-
-func _on_coin_up():
-	coins += 1
-	$CoinUp.play()
-	porta.atualizaHUD(coins)
