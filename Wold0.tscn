@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c612n7nnfccnt"]
+[gd_scene load_steps=22 format=3 uid="uid://c612n7nnfccnt"]
 
 [ext_resource type="Script" path="res://Wold0.gd" id="1_njs4m"]
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
@@ -606,6 +606,29 @@ tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
 sources/51 = SubResource("TileSetAtlasSource_7lrt2")
 
+[sub_resource type="LabelSettings" id="LabelSettings_y1jep"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_a5y3o"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbrl2"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ci24k"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rjco6"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3ke0"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_t5hdc"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
 [node name="World0" type="Node2D" groups=["coinListener"]]
 script = ExtResource("1_njs4m")
 
@@ -678,3 +701,70 @@ scale = Vector2(2, 2)
 [node name="CoinUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_xbnbt")
 volume_db = -10.421
+
+[node name="EnemyText" type="Label" parent="."]
+offset_left = 597.0
+offset_top = 338.0
+offset_right = 756.0
+offset_bottom = 372.0
+text = "Evite inimigos !"
+label_settings = SubResource("LabelSettings_y1jep")
+
+[node name="PowerUpText" type="Label" parent="."]
+offset_left = 846.0
+offset_top = 4.0
+offset_right = 1083.0
+offset_bottom = 106.0
+text = "Colete power-ups 
+para aumenta a 
+velocidade  e pulo."
+label_settings = SubResource("LabelSettings_a5y3o")
+
+[node name="DoorText" type="Label" parent="."]
+offset_left = 258.0
+offset_top = 3.0
+offset_right = 596.0
+offset_bottom = 71.0
+text = "Portas levam para outras fases.
+Se abrem com Moedas."
+label_settings = SubResource("LabelSettings_qbrl2")
+
+[node name="CoinText" type="Label" parent="."]
+offset_left = 711.0
+offset_top = 508.0
+offset_right = 891.0
+offset_bottom = 610.0
+text = "Moedas são 
+necessárias para 
+terminar a fase."
+label_settings = SubResource("LabelSettings_ci24k")
+
+[node name="CheckpointText" type="Label" parent="."]
+offset_left = 896.0
+offset_top = 263.0
+offset_right = 1048.0
+offset_bottom = 331.0
+text = "Colete 
+Checkpoints !"
+label_settings = SubResource("LabelSettings_rjco6")
+
+[node name="MoveCtrlText" type="Label" parent="."]
+offset_left = 296.0
+offset_top = 253.0
+offset_right = 522.0
+offset_bottom = 389.0
+text = " Andar para Direita
+Andar para Esquerda
+Pulo
+Pulo Duplo"
+label_settings = SubResource("LabelSettings_p3ke0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1194.0
+offset_top = 265.0
+offset_right = 1288.0
+offset_bottom = 389.0
+text = "Realize o 
+pulo na 
+parede"
+label_settings = SubResource("LabelSettings_t5hdc")
