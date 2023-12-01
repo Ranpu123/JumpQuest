@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c612n7nnfccnt"]
+[gd_scene load_steps=28 format=3 uid="uid://c612n7nnfccnt"]
 
 [ext_resource type="Script" path="res://Wold0.gd" id="1_njs4m"]
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://co0mn7xgf70bk" path="res://Coin.tscn" id="9_m7vcc"]
 [ext_resource type="AudioStream" uid="uid://dghjurocyari5" path="res://Assets/Sounds/Coin.mp3" id="11_xbnbt"]
 [ext_resource type="PackedScene" uid="uid://c6bltyij8sj70" path="res://Porta.tscn" id="12_en4uj"]
+[ext_resource type="PackedScene" uid="uid://d4kjjs6kyp8kr" path="res://UpBotton.tscn" id="13_qoa0x"]
+[ext_resource type="PackedScene" uid="uid://cfimhwjug2gwv" path="res://SpaceButton.tscn" id="14_huv23"]
+[ext_resource type="PackedScene" uid="uid://c2e76yidhg4y8" path="res://RightButton.tscn" id="15_ejx22"]
+[ext_resource type="PackedScene" uid="uid://dc4l7fq31h13b" path="res://LeftButton.tscn" id="16_ysbhk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lrt2"]
 texture = ExtResource("1_nkli1")
@@ -629,6 +633,23 @@ font_size = 22
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="GDScript" id="GDScript_wmpqb"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$AnimatedSprite2D.play(\"idle\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta): 
+	pass
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_ttl7v"]
+font_size = 20
+
 [node name="World0" type="Node2D" groups=["coinListener"]]
 script = ExtResource("1_njs4m")
 
@@ -753,13 +774,13 @@ offset_left = 296.0
 offset_top = 253.0
 offset_right = 522.0
 offset_bottom = 389.0
-text = " Andar para Direita
+text = "Andar para Direita
 Andar para Esquerda
 Pulo
 Pulo Duplo"
 label_settings = SubResource("LabelSettings_p3ke0")
 
-[node name="Label" type="Label" parent="."]
+[node name="DoubleJumpText" type="Label" parent="."]
 offset_left = 1194.0
 offset_top = 265.0
 offset_right = 1288.0
@@ -768,3 +789,36 @@ text = "Realize o
 pulo na 
 parede"
 label_settings = SubResource("LabelSettings_t5hdc")
+
+[node name="Upbutton" parent="." instance=ExtResource("13_qoa0x")]
+position = Vector2(276, 336)
+scale = Vector2(2, 2)
+script = SubResource("GDScript_wmpqb")
+
+[node name="Spacebutton" parent="." instance=ExtResource("14_huv23")]
+position = Vector2(213, 337)
+scale = Vector2(2, 2)
+
+[node name="Rightbutton" parent="." instance=ExtResource("15_ejx22")]
+position = Vector2(276, 269)
+scale = Vector2(2, 2)
+
+[node name="Leftbutton" parent="." instance=ExtResource("16_ysbhk")]
+position = Vector2(277, 302)
+scale = Vector2(2, 2)
+
+[node name="Upbutton2" parent="." instance=ExtResource("13_qoa0x")]
+position = Vector2(276, 371)
+scale = Vector2(2, 2)
+
+[node name="Upbutton3" parent="." instance=ExtResource("13_qoa0x")]
+position = Vector2(241, 371)
+scale = Vector2(2, 2)
+
+[node name="Slash" type="Label" parent="."]
+offset_left = 250.0
+offset_top = 321.0
+offset_right = 290.0
+offset_bottom = 352.0
+text = "/"
+label_settings = SubResource("LabelSettings_ttl7v")

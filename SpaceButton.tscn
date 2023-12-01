@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfimhwjug2gwv"]
+
+[ext_resource type="Texture2D" uid="uid://ba7ef3yt1mk5v" path="res://Assets/Controllers/space_0.png" id="1_aafp5"]
+[ext_resource type="Script" path="res://SpaceButton.gd" id="1_ulpd5"]
+[ext_resource type="Texture2D" uid="uid://b85smhcf6ie3w" path="res://Assets/Controllers/space_1.png" id="2_iyng7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkohp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aafp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_iyng7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ulpd5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qkohp")
+animation = &"idle"
+frame_progress = 0.0957141

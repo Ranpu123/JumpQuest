@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4kjjs6kyp8kr"]
+
+[ext_resource type="Script" path="res://UpBotton.gd" id="1_11cq4"]
+[ext_resource type="Texture2D" uid="uid://cqoxia2r7ovru" path="res://Assets/Controllers/up_0.png" id="1_bcdi3"]
+[ext_resource type="Texture2D" uid="uid://bc0lpqk0sj0ww" path="res://Assets/Controllers/up_1.png" id="2_1ch6s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yuqye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bcdi3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1ch6s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_11cq4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yuqye")
+animation = &"idle"
+frame_progress = 0.410663
