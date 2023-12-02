@@ -1,14 +1,17 @@
-[gd_scene load_steps=30 format=3 uid="uid://bno3ti4o4fk14"]
+[gd_scene load_steps=34 format=3 uid="uid://bno3ti4o4fk14"]
 
 [ext_resource type="Script" path="res://Wold0.gd" id="1_njs4m"]
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
 [ext_resource type="PackedScene" uid="uid://dmg2r7xxap0fw" path="res://Player.tscn" id="2_k6ll2"]
 [ext_resource type="PackedScene" uid="uid://ba4nelkrgqugj" path="res://Mob.tscn" id="3_hco1d"]
 [ext_resource type="PackedScene" uid="uid://dp6d2bjoi57g6" path="res://Checkpoint.tscn" id="4_fujl3"]
+[ext_resource type="Texture2D" uid="uid://cxj6bpv8ormds" path="res://Assets/HUD/Heart Full.png" id="4_vft30"]
 [ext_resource type="PackedScene" uid="uid://cq7noseo3icbg" path="res://Enemy2.tscn" id="5_17fy7"]
+[ext_resource type="Script" path="res://HUDVida.gd" id="5_gu2jm"]
 [ext_resource type="PackedScene" uid="uid://b4uomyne6nlwl" path="res://debug_platform.tscn" id="6_o4xo5"]
+[ext_resource type="Texture2D" uid="uid://clccu86bkeua2" path="res://Assets/Coin/Coin.png" id="6_rpf66"]
 [ext_resource type="Script" path="res://Camera.gd" id="7_4h55h"]
-[ext_resource type="PackedScene" uid="uid://ch7ebfl37syt6" path="res://power_up.tscn" id="8_8ccvo"]
+[ext_resource type="PackedScene" path="res://power_up.tscn" id="8_8ccvo"]
 [ext_resource type="PackedScene" uid="uid://cjj6loh6adn8n" path="res://Spike.tscn" id="8_oyfls"]
 [ext_resource type="PackedScene" uid="uid://co0mn7xgf70bk" path="res://Coin.tscn" id="9_m7vcc"]
 [ext_resource type="AudioStream" uid="uid://dghjurocyari5" path="res://Assets/Sounds/Coin.mp3" id="11_xbnbt"]
@@ -612,6 +615,9 @@ tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
 sources/51 = SubResource("TileSetAtlasSource_7lrt2")
 
+[sub_resource type="LabelSettings" id="LabelSettings_78ffk"]
+font = ExtResource("14_bag4e")
+
 [sub_resource type="LabelSettings" id="LabelSettings_y1jep"]
 font = ExtResource("14_bag4e")
 font_size = 20
@@ -664,6 +670,7 @@ func _process(delta):
 [node name="World0" type="Node2D" node_paths=PackedStringArray("porta") groups=["coinListener"]]
 script = ExtResource("1_njs4m")
 porta = NodePath("Porta")
+max_coins = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)
@@ -683,6 +690,44 @@ layer_1/tile_data = PackedInt32Array()
 anchor_mode = 0
 script = ExtResource("7_4h55h")
 
+[node name="vidas" type="TextureRect" parent="Camera2D"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 74.0
+offset_bottom = 38.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_vft30")
+stretch_mode = 1
+script = ExtResource("5_gu2jm")
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+offset_left = 20.0
+offset_top = 56.0
+offset_right = 38.0
+offset_bottom = 74.0
+scale = Vector2(2, 2)
+texture = ExtResource("6_rpf66")
+stretch_mode = 1
+
+[node name="max" type="Label" parent="Camera2D"]
+offset_left = 82.0
+offset_top = 56.0
+offset_right = 122.0
+offset_bottom = 76.0
+scale = Vector2(2, 2)
+text = "/#"
+label_settings = SubResource("LabelSettings_78ffk")
+
+[node name="atual" type="Label" parent="Camera2D"]
+offset_left = 49.0
+offset_top = 56.0
+offset_right = 67.0
+offset_bottom = 76.0
+scale = Vector2(2, 2)
+text = "##"
+label_settings = SubResource("LabelSettings_78ffk")
+horizontal_alignment = 2
+
 [node name="Coin" parent="." instance=ExtResource("9_m7vcc")]
 position = Vector2(589, 531)
 scale = Vector2(2, 2)
@@ -694,7 +739,7 @@ scale = Vector2(2, 2)
 [node name="Porta" parent="." instance=ExtResource("12_en4uj")]
 position = Vector2(396, 127)
 scale = Vector2(2, 2)
-max_coin = 2
+max_coin = 1
 
 [node name="PowerUp" parent="." instance=ExtResource("8_8ccvo")]
 position = Vector2(919, 117)
@@ -758,10 +803,10 @@ velocidade  e pulo."
 label_settings = SubResource("LabelSettings_a5y3o")
 
 [node name="DoorText" type="Label" parent="."]
-offset_left = 114.0
-offset_top = 69.0
-offset_right = 328.0
-offset_bottom = 138.0
+offset_left = 143.0
+offset_top = 29.0
+offset_right = 357.0
+offset_bottom = 98.0
 text = "Portas levam para 
 outras fases e se 
 abrem com Moedas."
@@ -839,3 +884,5 @@ scale = Vector2(2, 2)
 [node name="Upbutton3" parent="." instance=ExtResource("13_qoa0x")]
 position = Vector2(241, 371)
 scale = Vector2(2, 2)
+
+[connection signal="hit" from="Player" to="Camera2D/vidas" method="_on_player_hit"]
