@@ -19,8 +19,9 @@ font_color = Color(0.682353, 0.682353, 0.682353, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Game Over" type="Node2D"]
+[node name="Game Over" type="Node2D" node_paths=PackedStringArray("sound")]
 script = ExtResource("1_gaura")
+sound = NodePath("GameOverSound")
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jdkba")

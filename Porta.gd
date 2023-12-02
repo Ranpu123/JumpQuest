@@ -17,8 +17,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(inside):
-		if(Input.is_action_just_pressed("move_jump")):
-			get_tree().change_scene_to_file("res://Victory.tscn")
+		if(Input.is_action_just_pressed("move_jump") and cur_coins >= max_coin):
+			SceneTransitions.change_scene_to_file("res://Victory.tscn")
 			
 	
 func atualizaHUD(coins):

@@ -24,8 +24,9 @@ font = ExtResource("3_lq6ra")
 font_size = 24
 font_color = Color(0.109804, 0.117647, 0.847059, 1)
 
-[node name="Victory" type="Node2D"]
+[node name="Victory" type="Node2D" node_paths=PackedStringArray("sound")]
 script = ExtResource("1_76x42")
+sound = NodePath("VictorySound")
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_y28fi")

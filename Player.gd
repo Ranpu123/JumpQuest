@@ -116,7 +116,7 @@ func player_die(body):
 			hide()
 			hit.emit()
 		else:
-			get_tree().change_scene_to_file("res://GameOver.tscn")
+			SceneTransitions.change_scene_to_file("res://GameOver.tscn")
 
 
 func _on_power_up_timer_timeout():
