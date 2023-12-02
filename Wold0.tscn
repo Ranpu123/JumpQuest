@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bno3ti4o4fk14"]
+[gd_scene load_steps=30 format=3 uid="uid://bno3ti4o4fk14"]
 
 [ext_resource type="Script" path="res://Wold0.gd" id="1_njs4m"]
 [ext_resource type="Texture2D" uid="uid://1lecoeoww5i2" path="res://Assets/Ground/tilemap_packed.png" id="1_nkli1"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dghjurocyari5" path="res://Assets/Sounds/Coin.mp3" id="11_xbnbt"]
 [ext_resource type="PackedScene" uid="uid://c6bltyij8sj70" path="res://Porta.tscn" id="12_en4uj"]
 [ext_resource type="PackedScene" uid="uid://d4kjjs6kyp8kr" path="res://UpBotton.tscn" id="13_qoa0x"]
+[ext_resource type="FontFile" uid="uid://bew0tmtdh2vxt" path="res://Assets/Godot-Fontpack/fonts/connection_ii/ConnectionII.otf" id="14_bag4e"]
 [ext_resource type="PackedScene" uid="uid://cfimhwjug2gwv" path="res://SpaceButton.tscn" id="14_huv23"]
 [ext_resource type="PackedScene" uid="uid://c2e76yidhg4y8" path="res://RightButton.tscn" id="15_ejx22"]
 [ext_resource type="PackedScene" uid="uid://dc4l7fq31h13b" path="res://LeftButton.tscn" id="16_ysbhk"]
@@ -612,25 +613,34 @@ physics_layer_0/collision_layer = 1
 sources/51 = SubResource("TileSetAtlasSource_7lrt2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1jep"]
+font = ExtResource("14_bag4e")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_a5y3o"]
+font = ExtResource("14_bag4e")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_qbrl2"]
+font = ExtResource("14_bag4e")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_ci24k"]
+font = ExtResource("14_bag4e")
 font_size = 20
 font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rjco6"]
+font = ExtResource("14_bag4e")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_p3ke0"]
+line_spacing = 12.0
+font = ExtResource("14_bag4e")
 font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_t5hdc"]
+font = ExtResource("14_bag4e")
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 
@@ -730,37 +740,37 @@ stream = ExtResource("11_xbnbt")
 volume_db = -10.421
 
 [node name="EnemyText" type="Label" parent="."]
-offset_left = 597.0
-offset_top = 338.0
-offset_right = 756.0
-offset_bottom = 372.0
+offset_left = 665.0
+offset_top = 341.0
+offset_right = 824.0
+offset_bottom = 375.0
 text = "Evite inimigos !"
 label_settings = SubResource("LabelSettings_y1jep")
 
 [node name="PowerUpText" type="Label" parent="."]
-offset_left = 846.0
-offset_top = 4.0
-offset_right = 1083.0
-offset_bottom = 106.0
+offset_left = 869.0
+offset_top = 17.0
+offset_right = 1106.0
+offset_bottom = 119.0
 text = "Colete power-ups 
 para aumenta a 
 velocidade  e pulo."
 label_settings = SubResource("LabelSettings_a5y3o")
 
 [node name="DoorText" type="Label" parent="."]
-offset_left = 258.0
-offset_top = 3.0
-offset_right = 596.0
-offset_bottom = 71.0
+offset_left = 281.0
+offset_top = 11.0
+offset_right = 620.0
+offset_bottom = 79.0
 text = "Portas levam para outras fases.
 Se abrem com Moedas."
 label_settings = SubResource("LabelSettings_qbrl2")
 
 [node name="CoinText" type="Label" parent="."]
-offset_left = 711.0
-offset_top = 508.0
-offset_right = 891.0
-offset_bottom = 610.0
+offset_left = 705.0
+offset_top = 498.0
+offset_right = 885.0
+offset_bottom = 600.0
 text = "Moedas são 
 necessárias para 
 terminar a fase."
@@ -776,10 +786,10 @@ Checkpoints !"
 label_settings = SubResource("LabelSettings_rjco6")
 
 [node name="MoveCtrlText" type="Label" parent="."]
-offset_left = 296.0
-offset_top = 253.0
-offset_right = 522.0
-offset_bottom = 389.0
+offset_left = 299.0
+offset_top = 257.0
+offset_right = 534.0
+offset_bottom = 397.0
 text = "Andar para Direita
 Andar para Esquerda
 Pulo
@@ -788,9 +798,9 @@ label_settings = SubResource("LabelSettings_p3ke0")
 
 [node name="DoubleJumpText" type="Label" parent="."]
 offset_left = 1194.0
-offset_top = 265.0
-offset_right = 1288.0
-offset_bottom = 389.0
+offset_top = 275.0
+offset_right = 1284.0
+offset_bottom = 349.0
 text = "Realize o 
 pulo na 
 parede"
