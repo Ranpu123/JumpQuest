@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcgua0b85tn6h"]
+
+[ext_resource type="Script" path="res://GameOver.gd" id="1_76x42"]
+[ext_resource type="AudioStream" uid="uid://bu5c8if041qh2" path="res://Assets/Sounds/VictorySound.mp3" id="2_y28fi"]
+[ext_resource type="FontFile" uid="uid://db4ekdqy8c0y6" path="res://Assets/Godot-Fontpack/fonts/kirifont/KiriFont.ttf" id="3_lq6ra"]
+[ext_resource type="Script" path="res://StartButton.gd" id="4_tw7om"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1dww"]
+font = ExtResource("3_lq6ra")
+font_size = 64
+font_color = Color(0.827451, 0.827451, 0, 1)
+outline_size = 6
+outline_color = Color(0.109804, 0.117647, 0.847059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ol1u"]
+font = ExtResource("3_lq6ra")
+font_size = 36
+font_color = Color(0.827451, 0.827451, 0, 1)
+outline_size = 5
+outline_color = Color(0.109804, 0.117647, 0.847059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nx1oo"]
+font = ExtResource("3_lq6ra")
+font_size = 24
+font_color = Color(0.109804, 0.117647, 0.847059, 1)
+
+[node name="Victory" type="Node2D"]
+script = ExtResource("1_76x42")
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_y28fi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(639, 362)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_left = -639.0
+offset_top = -362.0
+offset_right = 641.0
+offset_bottom = 358.0
+color = Color(0.352941, 0.654902, 0.588235, 1)
+
+[node name="Victory" type="Label" parent="Camera2D"]
+offset_left = -199.0
+offset_top = -162.0
+offset_right = 201.0
+offset_bottom = -48.0
+size_flags_horizontal = 4
+text = "Parabéns"
+label_settings = SubResource("LabelSettings_c1dww")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="Camera2D"]
+offset_left = -103.0
+offset_top = 135.0
+offset_right = 89.0
+offset_bottom = 198.0
+size_flags_vertical = 4
+flat = true
+script = ExtResource("4_tw7om")
+metadata/_edit_group_ = true
+
+[node name="RestartLabel" type="Label" parent="Camera2D/RestartButton"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 64.0
+text = "Restart"
+label_settings = SubResource("LabelSettings_0ol1u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Victory2" type="Label" parent="Camera2D"]
+offset_left = -175.0
+offset_top = -74.0
+offset_right = 175.0
+offset_bottom = -47.0
+text = "voce concluiu o jogo"
+label_settings = SubResource("LabelSettings_nx1oo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Camera2D/RestartButton" to="Camera2D/RestartButton" method="_on_start_button_pressed"]

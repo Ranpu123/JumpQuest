@@ -18,7 +18,8 @@ func _ready():
 func _process(delta):
 	if(inside):
 		if(Input.is_action_just_pressed("move_jump")):
-			print("AAAAAAAAAAAAAAAAAAA")
+			get_tree().change_scene_to_file("res://Victory.tscn")
+			
 	
 func atualizaHUD(coins):
 	cur_coins = coins

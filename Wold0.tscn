@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b4uomyne6nlwl" path="res://debug_platform.tscn" id="6_o4xo5"]
 [ext_resource type="Texture2D" uid="uid://clccu86bkeua2" path="res://Assets/Coin/Coin.png" id="6_rpf66"]
 [ext_resource type="Script" path="res://Camera.gd" id="7_4h55h"]
-[ext_resource type="PackedScene" path="res://power_up.tscn" id="8_8ccvo"]
+[ext_resource type="PackedScene" uid="uid://ch7ebfl37syt6" path="res://power_up.tscn" id="8_8ccvo"]
 [ext_resource type="PackedScene" uid="uid://cjj6loh6adn8n" path="res://Spike.tscn" id="8_oyfls"]
 [ext_resource type="PackedScene" uid="uid://co0mn7xgf70bk" path="res://Coin.tscn" id="9_m7vcc"]
 [ext_resource type="AudioStream" uid="uid://dghjurocyari5" path="res://Assets/Sounds/Coin.mp3" id="11_xbnbt"]
