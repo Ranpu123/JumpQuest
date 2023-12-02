@@ -1,11 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6bltyij8sj70"]
+[gd_scene load_steps=9 format=3 uid="uid://c6bltyij8sj70"]
 
 [ext_resource type="Script" path="res://Porta.gd" id="1_mrvyr"]
 [ext_resource type="Texture2D" uid="uid://do5pam57h34aw" path="res://Assets/Objects/Door (1).png" id="2_sqxkn"]
 [ext_resource type="Texture2D" uid="uid://clccu86bkeua2" path="res://Assets/Coin/Coin.png" id="3_msepe"]
+[ext_resource type="FontFile" uid="uid://bew0tmtdh2vxt" path="res://Assets/Godot-Fontpack/fonts/connection_ii/ConnectionII.otf" id="3_s0eu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bw3ic"]
 size = Vector2(18, 18)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xlso5"]
+font = ExtResource("3_s0eu7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hevnm"]
+font = ExtResource("3_s0eu7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_nv142"]
+font = ExtResource("3_s0eu7")
 
 [node name="Porta" type="Area2D"]
 script = ExtResource("1_mrvyr")
@@ -17,32 +27,35 @@ texture = ExtResource("2_sqxkn")
 shape = SubResource("RectangleShape2D_bw3ic")
 
 [node name="barra" type="Label" parent="."]
-offset_left = -3.0
-offset_top = -29.0
-offset_right = 4.0
-offset_bottom = -3.0
+offset_left = -6.0
+offset_top = -31.0
+offset_right = 7.0
+offset_bottom = -5.0
 text = "/"
+label_settings = SubResource("LabelSettings_xlso5")
 
 [node name="atual" type="Label" parent="."]
-offset_left = -33.0
-offset_top = -29.0
-offset_right = -4.0
-offset_bottom = -3.0
+offset_left = -39.0
+offset_top = -31.0
+offset_right = -10.0
+offset_bottom = -5.0
 text = "#"
+label_settings = SubResource("LabelSettings_hevnm")
 horizontal_alignment = 2
 
 [node name="max" type="Label" parent="."]
-offset_left = 4.0
-offset_top = -29.0
-offset_right = 37.0
-offset_bottom = -3.0
+offset_left = 9.0
+offset_top = -31.0
+offset_right = 42.0
+offset_bottom = -5.0
 text = "#"
+label_settings = SubResource("LabelSettings_nv142")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -9.0
-offset_top = -40.0
+offset_top = -49.0
 offset_right = 9.0
-offset_bottom = -22.0
+offset_bottom = -31.0
 texture = ExtResource("3_msepe")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

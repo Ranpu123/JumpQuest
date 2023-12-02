@@ -1,12 +1,9 @@
-extends Node2D
+extends TextureRect
 
-@export var max_coin = 5
-
-var coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	size.x = 18 * Global.lives
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,6 +11,5 @@ func _process(delta):
 	pass
 
 
-func _on_coin_up():
-	coins += 1
-	$CoinUp.play()
+func _on_player_hit():
+	size.x = 18 * Global.lives

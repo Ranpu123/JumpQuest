@@ -1,29 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://b85dpdlaaipad"]
+[gd_scene load_steps=5 format=3 uid="uid://b85dpdlaaipad"]
 
 [ext_resource type="FontFile" uid="uid://db4ekdqy8c0y6" path="res://Assets/Godot-Fontpack/fonts/kirifont/KiriFont.ttf" id="1_j4rys"]
+[ext_resource type="Script" path="res://StartButton.gd" id="2_acwxp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c1dww"]
 font = ExtResource("1_j4rys")
 font_size = 64
+font_color = Color(0.827451, 0.827451, 0, 1)
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0ol1u"]
 font = ExtResource("1_j4rys")
 font_size = 36
+font_color = Color(0.827451, 0.827451, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Menu" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(639, 362)
 
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_left = -639.0
+offset_top = -362.0
+offset_right = 641.0
+offset_bottom = 358.0
+color = Color(0.117647, 0.376471, 1, 1)
+
 [node name="Jump Quest" type="Label" parent="Camera2D"]
 offset_left = -247.0
-offset_top = -290.0
+offset_top = -306.0
 offset_right = 253.0
-offset_bottom = -176.0
+offset_bottom = -192.0
 size_flags_horizontal = 4
 size_flags_vertical = 1
 text = "Jump Quest"
 label_settings = SubResource("LabelSettings_c1dww")
+vertical_alignment = 1
 
 [node name="Control" type="Control" parent="Camera2D"]
 layout_mode = 3
@@ -39,7 +54,8 @@ offset_top = 46.0
 offset_right = 97.0
 offset_bottom = 109.0
 size_flags_vertical = 4
-text = "              "
+flat = true
+script = ExtResource("2_acwxp")
 
 [node name="StartLabel" type="Label" parent="Camera2D/StartButton"]
 layout_mode = 0
@@ -49,3 +65,5 @@ text = "Start"
 label_settings = SubResource("LabelSettings_0ol1u")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="Camera2D/StartButton" to="Camera2D/StartButton" method="_on_start_button_pressed"]
