@@ -5,6 +5,7 @@ extends Area2D
 @onready var atual = $atual
 @onready var max = $max
 
+
 var cur_coins = 0
 
 var inside: bool = false
@@ -18,7 +19,7 @@ func _ready():
 func _process(delta):
 	if(inside):
 		if(Input.is_action_just_pressed("move_jump") and cur_coins >= max_coin):
-			SceneTransitions.change_scene_to_file("res://Victory.tscn")
+			SceneTransitions.change_scene_to_file("res://Wold1.tscn")
 			
 	
 func atualizaHUD(coins):

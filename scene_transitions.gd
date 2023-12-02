@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var future_scene
+var future_scene:String
 
 func change_scene_to_file(target: String):
 	future_scene = target
