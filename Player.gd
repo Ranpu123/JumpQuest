@@ -88,12 +88,7 @@ func update_animation():
 
 func _on_player_detector_body_entered(body):
 	player_die(body)
-	if body.is_in_group("power_up"):
-		MAX_SPEED = MAX_SPEED * 1.15
-		JUMP_VELOCITY = JUMP_VELOCITY * 1.15
-		body.queue_free()
-		$PowerUpTimer.start()
-		print("Caralha")
+		
 
 #Ready to Respawn GAMER
 func _on_respawn_timer_timeout():
@@ -128,3 +123,12 @@ func player_die(body):
 func _on_power_up_timer_timeout():
 	MAX_SPEED = MAX_SPEED / 1.15
 	JUMP_VELOCITY = JUMP_VELOCITY / 1.15 # Replace with function body.
+	print("power up end")
+	
+func _on_power_up_activate():
+	MAX_SPEED = MAX_SPEED * 1.15
+	JUMP_VELOCITY = JUMP_VELOCITY * 1.15
+	$PowerUpTimer.start()
+	print("power up activated")
+	$PowerUpSound.play()
+	

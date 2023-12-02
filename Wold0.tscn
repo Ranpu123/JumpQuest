@@ -673,9 +673,6 @@ layer_1/tile_data = PackedInt32Array()
 anchor_mode = 0
 script = ExtResource("7_4h55h")
 
-[node name="Player" parent="." instance=ExtResource("2_k6ll2")]
-position = Vector2(231, 589)
-
 [node name="Coin" parent="." instance=ExtResource("9_m7vcc")]
 position = Vector2(589, 531)
 scale = Vector2(2, 2)
@@ -690,7 +687,7 @@ scale = Vector2(2, 2)
 max_coin = 2
 
 [node name="PowerUp" parent="." instance=ExtResource("8_8ccvo")]
-position = Vector2(188, 553)
+position = Vector2(919, 117)
 
 [node name="Checkpoint" parent="." instance=ExtResource("4_fujl3")]
 position = Vector2(1048, 382)
@@ -720,6 +717,9 @@ scale = Vector2(2, 2)
 [node name="Enemy3" parent="." instance=ExtResource("5_17fy7")]
 position = Vector2(446, 422)
 scale = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_k6ll2")]
+position = Vector2(231, 589)
 
 [node name="Debug Platform" parent="." groups=["spikes"] instance=ExtResource("6_o4xo5")]
 position = Vector2(-713, 446)
