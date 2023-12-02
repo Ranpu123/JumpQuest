@@ -758,12 +758,13 @@ velocidade  e pulo."
 label_settings = SubResource("LabelSettings_a5y3o")
 
 [node name="DoorText" type="Label" parent="."]
-offset_left = 281.0
-offset_top = 11.0
-offset_right = 620.0
-offset_bottom = 79.0
-text = "Portas levam para outras fases.
-Se abrem com Moedas."
+offset_left = 114.0
+offset_top = 69.0
+offset_right = 328.0
+offset_bottom = 138.0
+text = "Portas levam para 
+outras fases e se 
+abrem com Moedas."
 label_settings = SubResource("LabelSettings_qbrl2")
 
 [node name="CoinText" type="Label" parent="."]
