@@ -116,8 +116,7 @@ func player_die(body):
 			hide()
 			hit.emit()
 		else:
-			#TODO: GAMER has died for real, show screen of shame (Game over)
-			pass
+			get_tree().change_scene_to_file("res://GameOver.tscn")
 
 
 func _on_power_up_timer_timeout():

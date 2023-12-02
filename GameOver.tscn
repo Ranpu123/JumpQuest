@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv3dxwkk8fets"]
+
+[ext_resource type="Script" path="res://GameOver.gd" id="1_gaura"]
+[ext_resource type="FontFile" uid="uid://db4ekdqy8c0y6" path="res://Assets/Godot-Fontpack/fonts/kirifont/KiriFont.ttf" id="1_pgsdb"]
+[ext_resource type="Script" path="res://StartButton.gd" id="2_c5e7m"]
+[ext_resource type="AudioStream" uid="uid://bw0gxuyx1dsuj" path="res://Assets/Sounds/game over sound.mp3" id="3_jdkba"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1dww"]
+font = ExtResource("1_pgsdb")
+font_size = 64
+font_color = Color(0.529412, 0.0509804, 0, 1)
+outline_size = 3
+outline_color = Color(1, 0.156863, 0.0352941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ol1u"]
+font = ExtResource("1_pgsdb")
+font_size = 36
+font_color = Color(0.682353, 0.682353, 0.682353, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Game Over" type="Node2D"]
+script = ExtResource("1_gaura")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jdkba")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(639, 362)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_left = -639.0
+offset_top = -362.0
+offset_right = 641.0
+offset_bottom = 358.0
+color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[node name="Jump Quest" type="Label" parent="Camera2D"]
+offset_left = -287.0
+offset_top = -57.0
+offset_right = 292.0
+offset_bottom = 57.0
+size_flags_horizontal = 4
+text = "VOCE MORREU"
+label_settings = SubResource("LabelSettings_c1dww")
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="Camera2D"]
+offset_left = -103.0
+offset_top = 135.0
+offset_right = 89.0
+offset_bottom = 198.0
+size_flags_vertical = 4
+flat = true
+script = ExtResource("2_c5e7m")
+metadata/_edit_group_ = true
+
+[node name="RestartLabel" type="Label" parent="Camera2D/RestartButton"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 64.0
+text = "Restart"
+label_settings = SubResource("LabelSettings_0ol1u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Camera2D/RestartButton" to="Camera2D/RestartButton" method="_on_start_button_pressed"]
