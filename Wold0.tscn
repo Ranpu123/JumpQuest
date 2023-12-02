@@ -746,6 +746,7 @@ scale = Vector2(2, 2)
 position = Vector2(396, 127)
 scale = Vector2(2, 2)
 max_coin = 1
+next_scene = "Wold1.tscn"
 
 [node name="PowerUp" parent="." instance=ExtResource("8_8ccvo")]
 position = Vector2(919, 117)

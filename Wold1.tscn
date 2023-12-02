@@ -705,6 +705,8 @@ scale = Vector2(2, 2)
 [node name="Porta" parent="." instance=ExtResource("9_cmbji")]
 position = Vector2(1236, 92)
 scale = Vector2(2, 2)
+max_coin = 3
+next_scene = "Victory.tscn"
 
 [node name="PowerUp" parent="." instance=ExtResource("10_eaipm")]
 position = Vector2(344, 82)
